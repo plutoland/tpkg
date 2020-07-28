@@ -1,0 +1,38 @@
+{
+  "name": "@plutoland/tpkg",
+  "version": "1.0.0-canary.0",
+  "description": "A test package",
+  "author": "The Pluto Authors",
+  "license": "MIT",
+  "homepage": "https://pluto.land",
+  "repository": "https://github.com/plutoland/tpkg",
+  "bugs": "https://github.com/plutoland/tpkg/issues",
+  "sass": "src/tpkg.scss",
+  "style": "dist/tpkg.css",
+  "main": "",
+  "keywords": [
+    "test",
+    "package"
+  ],
+  "scripts": {
+    "clean": "rimraf dist",
+    "predist": "npm run clean",
+    "dist": "npm run dist:development && npm run dist:production",
+    "dist:development": "cross-env NODE_ENV=development postcss src/tpkg.scss -o dist/tpkg.css --verbose",
+    "dist:production": "cross-env NODE_ENV=production postcss src/tpkg.scss -o dist/tpkg.min.css --verbose",
+    "prepare": "npm run dist",
+    "develop": "cross-env NODE_ENV=development concurrently \"postcss src/tpkg.scss -o dist/tpkg.css --verbose --watch\" \"live-server . --no-browser --port=3000\"",
+    "start": "npm run develop"
+  },
+  "devDependencies": {
+    "autoprefixer": "^9.8.5",
+    "concurrently": "^5.2.0",
+    "cross-env": "^7.0.2",
+    "cssnano": "^4.1.10",
+    "live-server": "^1.2.1",
+    "postcss-cli": "^7.1.1",
+    "postcss-node-sass": "^2.1.8",
+    "postcss-scss": "^2.1.1",
+    "rimraf": "^3.0.2"
+  }
+}
